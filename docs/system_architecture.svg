@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">ROS2 Logistics AMR System Architecture</title>
+  <desc id="desc">Layered architecture diagram for Gazebo simulation, ROS-GZ bridge, ROS2 navigation, robot model, maps, and user tools.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .band { fill: #ffffff; stroke: #d7dee9; stroke-width: 2; }
+      .title { font: 700 34px Arial, sans-serif; fill: #162033; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #526173; }
+      .band-title { font: 700 22px Arial, sans-serif; fill: #24324a; }
+      .box-title { font: 700 18px Arial, sans-serif; fill: #162033; }
+      .box-text { font: 400 14px Arial, sans-serif; fill: #4b5b70; }
+      .small { font: 400 13px Arial, sans-serif; fill: #637083; }
+      .sim { fill: #e8f4ff; stroke: #5aa9e6; }
+      .bridge { fill: #fff4df; stroke: #f4a940; }
+      .ros { fill: #ecf8ef; stroke: #62b36f; }
+      .asset { fill: #f1ecff; stroke: #8b72d6; }
+      .user { fill: #ffeef2; stroke: #d75a7a; }
+      .arrow { stroke: #42526a; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .soft-arrow { stroke: #7b8797; stroke-width: 2; fill: none; marker-end: url(#arrow-soft); stroke-dasharray: 8 6; }
+      .pill { fill: #24324a; }
+      .pill-text { font: 700 13px Arial, sans-serif; fill: #ffffff; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#42526a"/>
+    </marker>
+    <marker id="arrow-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b8797"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="860"/>
+  <text class="title" x="60" y="60">ROS2 Logistics AMR System Architecture</text>
+  <text class="subtitle" x="60" y="92">Simulation, bridge, navigation, robot description, maps, and runtime support nodes</text>
+
+  <rect class="band" x="50" y="130" width="300" height="620" rx="18"/>
+  <text class="band-title" x="80" y="172">User and Tools</text>
+  <rect class="user" x="80" y="210" width="240" height="115" rx="14"/>
+  <text class="box-title" x="105" y="248">RViz2</text>
+  <text class="box-text" x="105" y="276">2D Goal Pose</text>
+  <text class="box-text" x="105" y="300">Map / Scan visualization</text>
+  <rect class="user" x="80" y="365" width="240" height="115" rx="14"/>
+  <text class="box-title" x="105" y="403">Launch Commands</text>
+  <text class="box-text" x="105" y="431">amr_gazebo.launch.py</text>
+  <text class="box-text" x="105" y="455">nav2.launch.py</text>
+  <rect class="user" x="80" y="520" width="240" height="115" rx="14"/>
+  <text class="box-title" x="105" y="558">Docker Runtime</text>
+  <text class="box-text" x="105" y="586">docker-compose</text>
+  <text class="box-text" x="105" y="610">Reproducible stack</text>
+
+  <rect class="band" x="390" y="130" width="300" height="620" rx="18"/>
+  <text class="band-title" x="420" y="172">Gazebo Simulation</text>
+  <rect class="sim" x="420" y="210" width="240" height="115" rx="14"/>
+  <text class="box-title" x="445" y="248">Warehouse World</text>
+  <text class="box-text" x="445" y="276">walls, shelves, ground</text>
+  <text class="box-text" x="445" y="300">physics and sensors</text>
+  <rect class="sim" x="420" y="365" width="240" height="115" rx="14"/>
+  <text class="box-title" x="445" y="403">AMR Robot Model</text>
+  <text class="box-text" x="445" y="431">differential base</text>
+  <text class="box-text" x="445" y="455">2D lidar sensor</text>
+  <rect class="sim" x="420" y="520" width="240" height="115" rx="14"/>
+  <text class="box-title" x="445" y="558">Gazebo Plugins</text>
+  <text class="box-text" x="445" y="586">DiffDrive system</text>
+  <text class="box-text" x="445" y="610">GPU lidar system</text>
+
+  <rect class="band" x="730" y="130" width="240" height="620" rx="18"/>
+  <text class="band-title" x="760" y="172">ROS-GZ Bridge</text>
+  <rect class="bridge" x="760" y="220" width="180" height="70" rx="14"/>
+  <text class="box-title" x="792" y="250">/scan</text>
+  <text class="small" x="792" y="272">LaserScan</text>
+  <rect class="bridge" x="760" y="320" width="180" height="70" rx="14"/>
+  <text class="box-title" x="792" y="350">/odom</text>
+  <text class="small" x="792" y="372">Odometry</text>
+  <rect class="bridge" x="760" y="420" width="180" height="70" rx="14"/>
+  <text class="box-title" x="792" y="450">/cmd_vel</text>
+  <text class="small" x="792" y="472">Twist</text>
+  <rect class="bridge" x="760" y="520" width="180" height="70" rx="14"/>
+  <text class="box-title" x="792" y="550">/clock and /tf</text>
+  <text class="small" x="792" y="572">time and frames</text>
+
+  <rect class="band" x="1010" y="130" width="340" height="620" rx="18"/>
+  <text class="band-title" x="1040" y="172">ROS2 Navigation Layer</text>
+  <rect class="ros" x="1040" y="210" width="280" height="95" rx="14"/>
+  <text class="box-title" x="1065" y="247">Localization</text>
+  <text class="box-text" x="1065" y="275">AMCL + initial pose</text>
+  <rect class="ros" x="1040" y="335" width="280" height="95" rx="14"/>
+  <text class="box-title" x="1065" y="372">Planning and Control</text>
+  <text class="box-text" x="1065" y="400">NavFn + Regulated Pure Pursuit</text>
+  <rect class="ros" x="1040" y="460" width="280" height="95" rx="14"/>
+  <text class="box-title" x="1065" y="497">Costmaps and Safety</text>
+  <text class="box-text" x="1065" y="525">global, local, collision monitor</text>
+  <rect class="ros" x="1040" y="585" width="280" height="95" rx="14"/>
+  <text class="box-title" x="1065" y="622">Support Nodes</text>
+  <text class="box-text" x="1065" y="650">robot_state_publisher, TF broadcaster</text>
+
+  <rect class="asset" x="430" y="780" width="210" height="48" rx="14"/>
+  <text class="pill-text" x="465" y="810">URDF / Xacro</text>
+  <rect class="asset" x="725" y="780" width="210" height="48" rx="14"/>
+  <text class="pill-text" x="768" y="810">Maps and Config</text>
+  <rect class="asset" x="1040" y="780" width="210" height="48" rx="14"/>
+  <text class="pill-text" x="1085" y="810">Nav2 Params</text>
+
+  <path class="arrow" d="M 320 268 C 355 268, 372 268, 413 268"/>
+  <path class="arrow" d="M 320 423 C 355 423, 372 423, 413 423"/>
+  <path class="arrow" d="M 660 268 C 700 268, 720 255, 754 255"/>
+  <path class="arrow" d="M 660 578 C 700 578, 720 355, 754 355"/>
+  <path class="arrow" d="M 1040 382 C 1005 382, 985 455, 946 455"/>
+  <path class="arrow" d="M 940 455 C 980 455, 1005 382, 1034 382"/>
+  <path class="arrow" d="M 940 255 C 980 255, 1005 255, 1034 255"/>
+  <path class="arrow" d="M 940 355 C 980 355, 1005 255, 1034 255"/>
+  <path class="soft-arrow" d="M 535 780 C 535 700, 535 670, 535 640"/>
+  <path class="soft-arrow" d="M 830 780 C 915 710, 990 640, 1038 508"/>
+  <path class="soft-arrow" d="M 1145 780 C 1145 735, 1145 720, 1145 685"/>
+
+  <rect class="pill" x="695" y="690" width="320" height="36" rx="18"/>
+  <text class="pill-text" x="724" y="713">Closed loop: goal -> path -> velocity -> odometry -> localization</text>
+</svg>

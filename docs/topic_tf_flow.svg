@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Topic and TF Flow</title>
+  <desc id="desc">Diagram showing ROS topics and TF frames for the AMR simulation and Nav2 stack.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 34px Arial, sans-serif; fill: #162033; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #59687a; }
+      .box { fill: #ffffff; stroke: #d9e2ec; stroke-width: 2; }
+      .topic { fill: #eaf4ff; stroke: #4d9de0; }
+      .tf { fill: #f4edff; stroke: #8e72d8; }
+      .node { fill: #edf8f1; stroke: #63b36f; }
+      .sim { fill: #fff2df; stroke: #e5a23b; }
+      .box-title { font: 700 18px Arial, sans-serif; fill: #162033; }
+      .text { font: 400 14px Arial, sans-serif; fill: #4c5e73; }
+      .section { font: 700 22px Arial, sans-serif; fill: #25344d; }
+      .arrow { stroke: #44536a; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #806bc7; stroke-width: 2.4; fill: none; marker-end: url(#arrow-purple); stroke-dasharray: 8 6; }
+      .label { font: 700 13px Arial, sans-serif; fill: #44536a; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#44536a"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#806bc7"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="760"/>
+  <text class="title" x="60" y="58">Topic and TF Flow</text>
+  <text class="subtitle" x="60" y="90">Runtime communication between Gazebo, ROS-GZ bridge, AMCL, Nav2, and TF publishers</text>
+
+  <rect class="box" x="55" y="135" width="360" height="520" rx="18"/>
+  <text class="section" x="85" y="178">Gazebo Producers</text>
+  <rect class="sim" x="90" y="220" width="290" height="84" rx="14"/>
+  <text class="box-title" x="120" y="255">GPU Lidar Sensor</text>
+  <text class="text" x="120" y="280">publishes simulated range data</text>
+  <rect class="sim" x="90" y="355" width="290" height="84" rx="14"/>
+  <text class="box-title" x="120" y="390">DiffDrive Plugin</text>
+  <text class="text" x="120" y="415">applies velocity and emits odometry</text>
+  <rect class="sim" x="90" y="490" width="290" height="84" rx="14"/>
+  <text class="box-title" x="120" y="525">Gazebo Clock</text>
+  <text class="text" x="120" y="550">drives simulation time</text>
+
+  <rect class="box" x="475" y="135" width="240" height="520" rx="18"/>
+  <text class="section" x="505" y="178">Bridge Topics</text>
+  <rect class="topic" x="510" y="220" width="170" height="64" rx="14"/>
+  <text class="box-title" x="558" y="258">/scan</text>
+  <rect class="topic" x="510" y="325" width="170" height="64" rx="14"/>
+  <text class="box-title" x="558" y="363">/odom</text>
+  <rect class="topic" x="510" y="430" width="170" height="64" rx="14"/>
+  <text class="box-title" x="548" y="468">/cmd_vel</text>
+  <rect class="topic" x="510" y="535" width="170" height="64" rx="14"/>
+  <text class="box-title" x="556" y="573">/clock</text>
+
+  <rect class="box" x="775" y="135" width="280" height="520" rx="18"/>
+  <text class="section" x="805" y="178">ROS2 Consumers</text>
+  <rect class="node" x="810" y="220" width="210" height="72" rx="14"/>
+  <text class="box-title" x="850" y="253">AMCL</text>
+  <text class="text" x="850" y="276">localization</text>
+  <rect class="node" x="810" y="330" width="210" height="72" rx="14"/>
+  <text class="box-title" x="850" y="363">Costmaps</text>
+  <text class="text" x="850" y="386">obstacle layers</text>
+  <rect class="node" x="810" y="440" width="210" height="72" rx="14"/>
+  <text class="box-title" x="850" y="473">Nav2 Control</text>
+  <text class="text" x="850" y="496">velocity output</text>
+  <rect class="node" x="810" y="550" width="210" height="72" rx="14"/>
+  <text class="box-title" x="850" y="583">Sim-Time Nodes</text>
+  <text class="text" x="850" y="606">use_sim_time</text>
+
+  <rect class="box" x="1110" y="135" width="235" height="520" rx="18"/>
+  <text class="section" x="1140" y="178">TF Tree</text>
+  <rect class="tf" x="1145" y="220" width="165" height="54" rx="14"/>
+  <text class="box-title" x="1194" y="254">map</text>
+  <rect class="tf" x="1145" y="315" width="165" height="54" rx="14"/>
+  <text class="box-title" x="1192" y="349">odom</text>
+  <rect class="tf" x="1145" y="410" width="165" height="54" rx="14"/>
+  <text class="box-title" x="1168" y="444">base_footprint</text>
+  <rect class="tf" x="1145" y="505" width="165" height="54" rx="14"/>
+  <text class="box-title" x="1185" y="539">base_link</text>
+  <rect class="tf" x="1145" y="600" width="165" height="54" rx="14"/>
+  <text class="box-title" x="1188" y="634">lidar_link</text>
+
+  <path class="arrow" d="M 380 262 C 430 262, 450 252, 503 252"/>
+  <path class="arrow" d="M 380 397 C 430 397, 450 357, 503 357"/>
+  <path class="arrow" d="M 915 476 C 790 476, 760 462, 687 462"/>
+  <path class="arrow" d="M 680 462 C 610 462, 480 397, 388 397"/>
+  <path class="arrow" d="M 380 532 C 430 532, 450 567, 503 567"/>
+  <path class="arrow" d="M 680 252 C 725 252, 760 256, 803 256"/>
+  <path class="arrow" d="M 680 252 C 725 252, 760 366, 803 366"/>
+  <path class="arrow" d="M 680 357 C 725 357, 760 256, 803 256"/>
+  <path class="arrow" d="M 680 357 C 725 357, 760 476, 803 476"/>
+  <path class="arrow" d="M 680 567 C 725 567, 760 586, 803 586"/>
+
+  <path class="dash" d="M 1020 256 C 1065 256, 1095 247, 1138 247"/>
+  <path class="dash" d="M 1020 256 C 1060 256, 1090 342, 1138 342"/>
+  <path class="dash" d="M 680 357 C 820 685, 1090 437, 1138 437"/>
+  <path class="dash" d="M 1228 274 L 1228 308"/>
+  <path class="dash" d="M 1228 369 L 1228 403"/>
+  <path class="dash" d="M 1228 464 L 1228 498"/>
+  <path class="dash" d="M 1228 559 L 1228 593"/>
+
+  <text class="label" x="410" y="238">LaserScan</text>
+  <text class="label" x="410" y="374">Odometry</text>
+  <text class="label" x="707" y="445">Twist</text>
+  <text class="label" x="710" y="238">scan input</text>
+  <text class="label" x="710" y="338">odom input</text>
+  <text class="label" x="1045" y="232">map to odom</text>
+  <text class="label" x="1030" y="420">odom to base</text>
+</svg>

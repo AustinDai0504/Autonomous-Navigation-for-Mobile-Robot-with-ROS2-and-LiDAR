@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">Nav2 Data Flow</title>
+  <desc id="desc">Data flow from sensors and maps through localization, costmaps, planning, control, safety monitoring, and velocity output.</desc>
+  <defs>
+    <style>
+      .bg { fill: #fbfcff; }
+      .title { font: 700 34px Arial, sans-serif; fill: #152238; }
+      .subtitle { font: 400 18px Arial, sans-serif; fill: #576477; }
+      .group { fill: #ffffff; stroke: #d9e0ea; stroke-width: 2; }
+      .group-title { font: 700 20px Arial, sans-serif; fill: #24324a; }
+      .node-title { font: 700 17px Arial, sans-serif; fill: #162033; }
+      .node-text { font: 400 14px Arial, sans-serif; fill: #506076; }
+      .input { fill: #eef5ff; stroke: #5b9be6; }
+      .loc { fill: #fff2df; stroke: #e3a03c; }
+      .plan { fill: #eef8ef; stroke: #63b66e; }
+      .ctrl { fill: #f5efff; stroke: #9270db; }
+      .safe { fill: #ffeff3; stroke: #d95c7d; }
+      .out { fill: #edf7f7; stroke: #48a6a9; }
+      .arrow { stroke: #435169; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #778398; stroke-width: 2; fill: none; marker-end: url(#arrow); stroke-dasharray: 8 6; }
+      .label { font: 700 13px Arial, sans-serif; fill: #435169; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#435169"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1400" height="900"/>
+  <text class="title" x="60" y="60">Navigation Data Flow</text>
+  <text class="subtitle" x="60" y="92">How map, laser scan, odometry, TF, and goals become safe velocity commands</text>
+
+  <rect class="group" x="55" y="135" width="270" height="610" rx="18"/>
+  <text class="group-title" x="85" y="175">Inputs</text>
+  <rect class="input" x="85" y="215" width="210" height="78" rx="14"/>
+  <text class="node-title" x="112" y="248">Warehouse Map</text>
+  <text class="node-text" x="112" y="272">warehouse_map.yaml</text>
+  <rect class="input" x="85" y="335" width="210" height="78" rx="14"/>
+  <text class="node-title" x="112" y="368">Laser Scan</text>
+  <text class="node-text" x="112" y="392">/scan</text>
+  <rect class="input" x="85" y="455" width="210" height="78" rx="14"/>
+  <text class="node-title" x="112" y="488">Odometry</text>
+  <text class="node-text" x="112" y="512">/odom</text>
+  <rect class="input" x="85" y="575" width="210" height="78" rx="14"/>
+  <text class="node-title" x="112" y="608">Navigation Goal</text>
+  <text class="node-text" x="112" y="632">RViz2 or action client</text>
+
+  <rect class="group" x="370" y="135" width="300" height="610" rx="18"/>
+  <text class="group-title" x="400" y="175">Localization</text>
+  <rect class="loc" x="405" y="250" width="230" height="110" rx="14"/>
+  <text class="node-title" x="435" y="290">AMCL</text>
+  <text class="node-text" x="435" y="318">particle filter localization</text>
+  <text class="node-text" x="435" y="342">publishes map to odom TF</text>
+  <rect class="loc" x="405" y="450" width="230" height="110" rx="14"/>
+  <text class="node-title" x="435" y="490">Initial Pose</text>
+  <text class="node-text" x="435" y="518">/initialpose once after launch</text>
+  <text class="node-text" x="435" y="542">starts AMCL near origin</text>
+
+  <rect class="group" x="715" y="135" width="300" height="610" rx="18"/>
+  <text class="group-title" x="745" y="175">Planning</text>
+  <rect class="plan" x="750" y="220" width="230" height="96" rx="14"/>
+  <text class="node-title" x="780" y="258">BT Navigator</text>
+  <text class="node-text" x="780" y="284">NavigateToPose behavior tree</text>
+  <rect class="plan" x="750" y="360" width="230" height="96" rx="14"/>
+  <text class="node-title" x="780" y="398">Global Costmap</text>
+  <text class="node-text" x="780" y="424">static, obstacle, inflation</text>
+  <rect class="plan" x="750" y="500" width="230" height="96" rx="14"/>
+  <text class="node-title" x="780" y="538">Planner Server</text>
+  <text class="node-text" x="780" y="564">NavFn global path</text>
+
+  <rect class="group" x="1060" y="135" width="285" height="610" rx="18"/>
+  <text class="group-title" x="1090" y="175">Control and Safety</text>
+  <rect class="ctrl" x="1095" y="220" width="215" height="96" rx="14"/>
+  <text class="node-title" x="1120" y="258">Local Costmap</text>
+  <text class="node-text" x="1120" y="284">voxel and inflation layers</text>
+  <rect class="ctrl" x="1095" y="360" width="215" height="96" rx="14"/>
+  <text class="node-title" x="1120" y="398">Controller Server</text>
+  <text class="node-text" x="1120" y="424">Regulated Pure Pursuit</text>
+  <rect class="safe" x="1095" y="500" width="215" height="96" rx="14"/>
+  <text class="node-title" x="1120" y="538">Collision Monitor</text>
+  <text class="node-text" x="1120" y="564">stop zone from scan</text>
+  <rect class="out" x="1095" y="640" width="215" height="64" rx="14"/>
+  <text class="node-title" x="1132" y="679">/cmd_vel</text>
+
+  <path class="arrow" d="M 295 254 C 345 254, 355 286, 398 300"/>
+  <path class="arrow" d="M 295 374 C 345 374, 355 315, 398 315"/>
+  <path class="arrow" d="M 295 494 C 345 494, 355 342, 398 342"/>
+  <path class="arrow" d="M 295 614 C 520 614, 610 268, 743 268"/>
+  <path class="arrow" d="M 635 305 C 675 305, 702 268, 743 268"/>
+  <path class="arrow" d="M 980 268 C 1025 268, 1045 268, 1088 268"/>
+  <path class="arrow" d="M 980 408 C 1025 408, 1045 268, 1088 268"/>
+  <path class="arrow" d="M 980 548 C 1025 548, 1045 408, 1088 408"/>
+  <path class="arrow" d="M 1202 316 L 1202 354"/>
+  <path class="arrow" d="M 1202 456 L 1202 494"/>
+  <path class="arrow" d="M 1202 596 L 1202 634"/>
+  <path class="dash" d="M 295 374 C 640 780, 980 710, 1088 548"/>
+  <path class="dash" d="M 295 494 C 650 820, 1020 750, 1090 684"/>
+
+  <text class="label" x="345" y="235">map</text>
+  <text class="label" x="342" y="388">scan</text>
+  <text class="label" x="342" y="480">odom</text>
+  <text class="label" x="560" y="604">goal</text>
+  <text class="label" x="1015" y="250">pose and path</text>
+  <text class="label" x="1012" y="389">path</text>
+  <text class="label" x="1218" y="340">obstacles</text>
+  <text class="label" x="1220" y="480">velocity</text>
+  <text class="label" x="1218" y="620">safe velocity</text>
+
+  <rect class="group" x="180" y="790" width="1040" height="58" rx="18"/>
+  <text class="group-title" x="220" y="826">Feedback loop: Gazebo publishes scan and odometry, Nav2 publishes /cmd_vel, and the robot motion updates the next localization cycle.</text>
+</svg>
