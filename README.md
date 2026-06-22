@@ -20,13 +20,7 @@ An autonomous mobile robot (AMR) for warehouse logistics applications built with
 
 ---
 
-## Demo
 
-[![Demo Video](https://img.shields.io/badge/Demo-YouTube-red)](https://youtu.be/4QUJeFePTSY)
-
-> Robot navigating autonomously between 4 waypoints in a warehouse environment with shelf obstacles using Nav2 and AMCL localization.
-
----
 
 ## Features
 
@@ -123,8 +117,7 @@ docker-compose up
 
 ## 系统架构图
 
-下面的图基于当前仓库中的 launch 文件、URDF/Xacro、Nav2 参数、Gazebo world、地图文件和 `amr_controller` 节点整理。所有图均使用 Mermaid，可以在 GitHub README 中直接渲染。
-
+下面的图基于当前仓库中的 launch 文件、URDF/Xacro、Nav2 参数、Gazebo world、地图文件和 `amr_controller` 节点整理。
 ### 1. 软件包与文件组织
 
 ```mermaid
